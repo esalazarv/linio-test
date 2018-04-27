@@ -92,6 +92,6 @@ class Application
      */
     public function run()
     {
-        echo implode('<br>', $this->alternative(1, 100));
+        echo implode('<br>', $this->getOutputForRange(1, 100));
     }
 }
