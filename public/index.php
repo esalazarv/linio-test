@@ -6,3 +6,6 @@
  * Time: 22:29
  */
 require __DIR__ . '/../vendor/autoload.php';
+
+$app = new \App\Application();
+$app->run();

@@ -34,16 +34,35 @@ class ValidatorTest extends TestCase
         return $rule;
     }
 
-    public function testValidate()
+    /**
+     * Validate a single one rule when rule return  true
+     */
+    public function testValidateRuleWhenEvaluationPass()
     {
-        $validator = new Validator('Single');
+        $value = 1;
+        $validator = new Validator();
         $rule  = $this->getMockRuleReturnFalse();
         $result = $validator->validate($value, $rule);
         $this->assertFalse($result);
     }
 
+    /**
+     * Validate a single one rule when rule return false
+     */
+    public function testValidateRuleWhenEvaluationFails()
+    {
+        $value = 1;
+        $validator = new Validator();
+        $rule  = $this->getMockRuleReturnTrue();
+        $result = $validator->validate($value, $rule);
+        $this->assertTrue($result);
+    }
+
+    /**
+     * Check validation for multiple rules return true when each evaluation rule return true
+     */
     public function testValidateMultipleRules() {
-        $validator = new Validator('Multiple');
+        $validator = new Validator();
         $value = 15;
         $collection = new RuleCollection();
         $collection->addRule($this->getMockRuleReturnTrue());
